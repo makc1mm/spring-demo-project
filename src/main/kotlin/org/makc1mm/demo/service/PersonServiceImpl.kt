@@ -1,5 +1,6 @@
 package org.makc1mm.demo.service
 
+import org.makc1mm.demo.exception.PersonAlreadyExistsException
 import org.makc1mm.demo.exception.PersonNotFountException
 import org.makc1mm.demo.model.PersonRequest
 import org.makc1mm.demo.model.PersonResponse
@@ -12,11 +13,12 @@ class PersonServiceImpl(
     private val personRepository: PersonRepository
 ) : PersonService {
 
-    /**
-     * TODO: добавить проверку на наличие юзера с таким же именем
-     */
     override fun createPerson(person: PersonRequest) {
-        personRepository.save(person.toEntity())
+        if (personRepository.findByUsername(person.username) == null) {
+            personRepository.save(person.toEntity())
+        } else {
+            throw PersonAlreadyExistsException(person.username)
+        }
     }
 
     override fun getAllPersons(): List<PersonResponse> {

@@ -11,7 +11,6 @@ class ErrorHandler: ResponseEntityExceptionHandler() {
     @ExceptionHandler(BaseException::class)
     fun handleBaseException(exception: BaseException): ResponseEntity<ApiError> {
         val apiError = ApiError(
-            errorCode = exception.errorCode,
             description = exception.description
         )
         return ResponseEntity(apiError, exception.httpStatus)

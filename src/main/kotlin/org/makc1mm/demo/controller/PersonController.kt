@@ -16,27 +16,27 @@ class PersonController(
         personService.createPerson(person)
     }
 
-    @GetMapping("/getAll")
+    @GetMapping("/get/all")
     fun getAllPersons(): List<PersonResponse> {
         return personService.getAllPersons()
     }
 
-    @GetMapping("/getByUsername")
-    fun getPersonByUsername(@RequestParam username: String): PersonResponse {
+    @GetMapping("/get/{username}")
+    fun getPersonByUsername(@PathVariable username: String): PersonResponse {
         return personService.getPersonByUsername(username)
     }
 
-    @PutMapping("/changeInfo")
+    @PutMapping("/change/{username}")
     fun changePersonInfo(
-        @RequestParam username: String,
+        @PathVariable username: String,
         @RequestParam email: String,
         @RequestParam phoneNumber: String
     ): PersonResponse {
         return personService.changePersonInfo(username, email, phoneNumber)
     }
 
-    @DeleteMapping("/deleteByUserName")
-    fun deletePersonByUserName(@RequestParam username: String) {
+    @DeleteMapping("/delete/{username}")
+    fun deletePersonByUserName(@PathVariable username: String) {
         personService.deletePersonByUsername(username)
     }
 }
