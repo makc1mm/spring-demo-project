@@ -24,7 +24,11 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	implementation("io.springfox:springfox-boot-starter:3.0.0")
 	implementation("org.postgresql:postgresql")
+	implementation("org.flywaydb:flyway-core:8.4.3")
+
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
+	testImplementation("org.testcontainers:junit-jupiter:1.16.3")
+	testImplementation("org.testcontainers:postgresql:1.16.3")
 }
 
 tasks.withType<KotlinCompile> {

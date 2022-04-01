@@ -4,5 +4,5 @@ import org.springframework.http.HttpStatus
 
 class PersonNotFountException(username: String) : BaseException(
     httpStatus = HttpStatus.NOT_FOUND,
-    description = "Person with username: $username not found"
+    description = "Person with username: '$username' not found"
 )

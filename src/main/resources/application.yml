@@ -5,7 +5,10 @@ spring:
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
-      ddl-auto: update
+      ddl-auto: validate
+    properties:
+      hibernate:
+        show_sql: false
   datasource:
     url: jdbc:postgresql://${POSTGRES_HOST:localhost}:${POSTGRES_PORT:5432}/${POSTGRES_BASE:postgres}
     username: ${POSTGRES_USER:postgres}

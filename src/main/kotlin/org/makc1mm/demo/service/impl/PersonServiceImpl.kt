@@ -1,11 +1,13 @@
-package org.makc1mm.demo.service
+package org.makc1mm.demo.service.impl
 
 import org.makc1mm.demo.exception.PersonAlreadyExistsException
 import org.makc1mm.demo.exception.PersonNotFountException
 import org.makc1mm.demo.model.PersonRequest
 import org.makc1mm.demo.model.PersonResponse
+import org.makc1mm.demo.model.ProductResponse
 import org.makc1mm.demo.model.entity.PersonEntity
 import org.makc1mm.demo.repository.PersonRepository
+import org.makc1mm.demo.service.PersonService
 import org.springframework.stereotype.Service
 
 @Service
@@ -52,7 +54,15 @@ class PersonServiceImpl(
     private fun PersonEntity.toResponse() = PersonResponse(
         username = username,
         email = email,
-        phoneNumber = phoneNumber
+        phoneNumber = phoneNumber,
+        products = products.map {
+            ProductResponse(
+                id = it.id,
+                name = it.name,
+                description = it.description,
+                price = it.price,
+                username = username
+            )
+        }
     )
-
 }

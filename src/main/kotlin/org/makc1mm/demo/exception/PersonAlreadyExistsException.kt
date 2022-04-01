@@ -4,5 +4,5 @@ import org.springframework.http.HttpStatus
 
 class PersonAlreadyExistsException(username: String) : BaseException(
     httpStatus = HttpStatus.BAD_REQUEST,
-    description = "Person with username: $username already exists"
+    description = "Person with username: '$username' already exists"
 )
